@@ -3,17 +3,17 @@ import {
   IconDroplet,
   IconTemperature,
   IconPlant,
-  IconSoil,
+  IconSeeding,
   IconCalendarStats,
   IconCloudRain,
   IconRuler,
   IconInfoCircle
 } from '@tabler/icons-react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/card';
 
 // Mock data for irrigation records
 const mockIrrigationData = {
-  // Past records
+  // Current month records
   '2024-07-01': {
     waterUsed: 1200, // liters
     location: 'North Field',
@@ -68,17 +68,140 @@ const mockIrrigationData = {
     vegetationType: 'Row Crops',
     cropType: 'Wheat',
     soilPH: 6.8
+  },
+  '2024-07-12': {
+    waterUsed: 1350,
+    location: 'South Field',
+    temperature: 33,
+    humidity: 62,
+    rainfall: 0,
+    landArea: 1.8,
+    vegetationType: 'Row Crops',
+    cropType: 'Rice',
+    soilPH: 7.2
+  },
+  '2024-07-14': {
+    waterUsed: 900,
+    location: 'West Field',
+    temperature: 30,
+    humidity: 70,
+    rainfall: 3,
+    landArea: 2.0,
+    vegetationType: 'Row Crops',
+    cropType: 'Corn',
+    soilPH: 7.0
+  },
+
+  // Previous month records
+  '2024-06-05': {
+    waterUsed: 1050,
+    location: 'North Field',
+    temperature: 29,
+    humidity: 68,
+    rainfall: 2,
+    landArea: 2.5,
+    vegetationType: 'Row Crops',
+    cropType: 'Wheat',
+    soilPH: 6.8
+  },
+  '2024-06-10': {
+    waterUsed: 1200,
+    location: 'East Field',
+    temperature: 31,
+    humidity: 65,
+    rainfall: 0,
+    landArea: 3.0,
+    vegetationType: 'Orchard',
+    cropType: 'Mango',
+    soilPH: 6.5
+  },
+  '2024-06-15': {
+    waterUsed: 850,
+    location: 'South Field',
+    temperature: 28,
+    humidity: 72,
+    rainfall: 8,
+    landArea: 1.8,
+    vegetationType: 'Row Crops',
+    cropType: 'Rice',
+    soilPH: 7.2
+  },
+  '2024-06-20': {
+    waterUsed: 950,
+    location: 'West Field',
+    temperature: 30,
+    humidity: 68,
+    rainfall: 0,
+    landArea: 2.0,
+    vegetationType: 'Row Crops',
+    cropType: 'Corn',
+    soilPH: 7.0
+  },
+  '2024-06-25': {
+    waterUsed: 1100,
+    location: 'North Field',
+    temperature: 32,
+    humidity: 60,
+    rainfall: 0,
+    landArea: 2.5,
+    vegetationType: 'Row Crops',
+    cropType: 'Wheat',
+    soilPH: 6.8
+  },
+
+  // Next month records (early entries)
+  '2024-08-01': {
+    waterUsed: 1300,
+    location: 'East Field',
+    temperature: 35,
+    humidity: 58,
+    rainfall: 0,
+    landArea: 3.0,
+    vegetationType: 'Orchard',
+    cropType: 'Mango',
+    soilPH: 6.5
+  },
+  '2024-08-03': {
+    waterUsed: 1000,
+    location: 'South Field',
+    temperature: 33,
+    humidity: 62,
+    rainfall: 0,
+    landArea: 1.8,
+    vegetationType: 'Row Crops',
+    cropType: 'Rice',
+    soilPH: 7.2
   }
 };
 
 // Weather forecast for future dates (for water usage suggestions)
 const weatherForecast = {
+  // Current month forecasts
   '2024-07-15': { temperature: 33, humidity: 62, rainfall: 0 },
   '2024-07-16': { temperature: 34, humidity: 60, rainfall: 0 },
   '2024-07-17': { temperature: 32, humidity: 65, rainfall: 5 },
   '2024-07-18': { temperature: 30, humidity: 70, rainfall: 15 },
   '2024-07-19': { temperature: 29, humidity: 75, rainfall: 8 },
-  '2024-07-20': { temperature: 31, humidity: 68, rainfall: 0 }
+  '2024-07-20': { temperature: 31, humidity: 68, rainfall: 0 },
+  '2024-07-21': { temperature: 32, humidity: 65, rainfall: 0 },
+  '2024-07-22': { temperature: 33, humidity: 60, rainfall: 0 },
+  '2024-07-23': { temperature: 35, humidity: 55, rainfall: 0 },
+  '2024-07-24': { temperature: 36, humidity: 50, rainfall: 0 },
+  '2024-07-25': { temperature: 34, humidity: 58, rainfall: 2 },
+  '2024-07-26': { temperature: 32, humidity: 65, rainfall: 8 },
+  '2024-07-27': { temperature: 30, humidity: 70, rainfall: 5 },
+  '2024-07-28': { temperature: 31, humidity: 68, rainfall: 0 },
+  '2024-07-29': { temperature: 33, humidity: 62, rainfall: 0 },
+  '2024-07-30': { temperature: 34, humidity: 60, rainfall: 0 },
+  '2024-07-31': { temperature: 35, humidity: 58, rainfall: 0 },
+
+  // Next month forecasts
+  '2024-08-05': { temperature: 36, humidity: 55, rainfall: 0 },
+  '2024-08-06': { temperature: 35, humidity: 58, rainfall: 0 },
+  '2024-08-07': { temperature: 34, humidity: 60, rainfall: 0 },
+  '2024-08-08': { temperature: 33, humidity: 62, rainfall: 2 },
+  '2024-08-09': { temperature: 32, humidity: 65, rainfall: 5 },
+  '2024-08-10': { temperature: 31, humidity: 68, rainfall: 8 }
 };
 
 // Function to calculate suggested water usage based on environmental factors
@@ -91,6 +214,13 @@ const calculateWaterSuggestion = (cropType, landArea, temperature, humidity, rai
     'Mango': 5500,
     'Cotton': 4500,
     'Sugarcane': 7000,
+    'Potato': 4200,
+    'Tomato': 4800,
+    'Onion': 3800,
+    'Soybean': 4300,
+    'Groundnut': 4100,
+    'Mustard': 3500,
+    'Sunflower': 4600,
     'Default': 5000
   };
 
@@ -125,8 +255,11 @@ const calculateWaterSuggestion = (cropType, landArea, temperature, humidity, rai
 };
 
 const IrrigationCalendar = () => {
+  // Format today's date as YYYY-MM-DD
+  const today = new Date().toISOString().split('T')[0];
+
   const [currentMonth, setCurrentMonth] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(today);
   const [calendarDays, setCalendarDays] = useState([]);
   const [irrigationRecord, setIrrigationRecord] = useState(null);
   const [waterSuggestion, setWaterSuggestion] = useState(null);
@@ -166,6 +299,14 @@ const IrrigationCalendar = () => {
 
     setCalendarDays(days);
   }, [currentMonth]);
+
+  // Handle initial selected date
+  useEffect(() => {
+    if (selectedDate) {
+      handleDateClick(selectedDate);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Handle date selection
   const handleDateClick = (date) => {
@@ -286,7 +427,7 @@ const IrrigationCalendar = () => {
 
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-amber-100 rounded-lg">
-                  <IconSoil className="h-5 w-5 text-amber-600" />
+                  <IconSeeding className="h-5 w-5 text-amber-600" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Soil pH</p>
