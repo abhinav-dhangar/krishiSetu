@@ -9,7 +9,6 @@ import plannerRoutes from "./routes/plannerRoutes.js";
 import { sarvamRouter } from "./routes/sarvam.route.js";
 import * as farmerController from "./controllers/farmerController.js";
 
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
