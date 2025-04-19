@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { 
-  IconPlant, IconDroplet, IconChartBar, IconTractor, 
-  IconSun, IconCloud, IconLeaf, IconUsers,
-  IconArrowRight, IconDeviceMobile, IconCurrencyRupee,
-  IconDeviceLaptop, IconDeviceTablet, IconChevronRight,
-  IconChevronDown, IconWorld, IconTrendingUp, IconSeeding,
-  IconCalendar, IconMapPin, IconClock, IconStar,
-  IconArrowUpRight, IconArrowDownRight, IconShoppingCart,
-  IconDeviceAnalytics, IconDeviceHeartMonitor, IconDeviceMobileMessage
+  IconPlant, IconDroplet, 
+  IconChartBar, IconLeaf, 
+  IconCurrencyRupee, IconChevronRight,
+  IconWorld, IconTrendingUp, 
+  IconMapPin, IconStar,
+  IconSeeding, IconArrowUpRight, 
+  IconArrowDownRight, IconShoppingCart,
+  IconDeviceAnalytics, IconDeviceHeartMonitor, 
+  IconDeviceMobileMessage
 } from '@tabler/icons-react';
 
 const Home = () => {

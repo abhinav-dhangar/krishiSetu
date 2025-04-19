@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IconBrandGoogleFilled } from '@tabler/icons-react';
+import { supabase } from '../lib/supabaseClient.js'; // adjust the path if needed
+
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -18,19 +20,40 @@ const Register = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Registration data:', formData);
-  };
-
+  
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+  
+    const { data, error } = await supabase.auth.signUp({
+      email: formData.email,
+      password: formData.password,
+      options: {
+        data: {
+          full_name: formData.name, // optional: custom user metadata
+        }
+      }
+    });
+  
+    if (error) {
+      console.error("Signup error:", error.message);
+      alert(error.message);
+    } else {
+      console.log("Signup success:", data);
+      alert("Check your inbox to confirm your email (if email confirmation is enabled).");
+    }
+  }
   return (
     <div className="min-h-screen flex">
       {/* Left side - Image */}
       <div className="hidden lg:block lg:w-1/2 relative">
         <div 
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inet-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1574943320219-553eb213f72d?ixlib=rb-4.0.3')",
+            backgroundImage: "url('https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Zm9vZCUyMG1hcmtldHxlbnwwfHwwfHx8MA%3D%3D')",
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-green-900/90 to-green-800/75"></div>

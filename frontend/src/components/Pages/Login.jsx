@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { supabase } from '../lib/supabaseClient';
 import { IconBrandGoogleFilled } from '@tabler/icons-react';
+import { useNavigate } from 'react-router-dom';
+
 
 const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -16,9 +20,24 @@ const Login = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Login data:', formData);
+  const handleLogin = async (e) => {
+    e.preventDefault(); 
+  
+    const { email, password } = formData;
+  
+    const { error, data } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+  
+    if (error) {
+      console.error('Login error:', error.message);
+      alert(error.message);
+    } else {
+      console.log('Login success:', data);
+      alert('Logged in!');
+      navigate('/dashboard');
+    }
   };
 
   return (
@@ -51,7 +70,7 @@ const Login = () => {
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleLogin} className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                 Email
