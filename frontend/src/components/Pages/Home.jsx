@@ -160,20 +160,20 @@ export default function Home() {
           </div>
 
           <nav className="hidden md:flex items-center gap-6">
-            <Link href="#" className="text-sm font-medium text-green-900 hover:text-green-700">
+            <Link to="/" className="text-sm font-medium text-green-900 hover:text-green-700">
               Home
             </Link>
-            <Link href="#" className="text-sm font-medium text-green-900 hover:text-green-700">
-              Solutions
+            <Link to="/dashboard" className="text-sm font-medium text-green-900 hover:text-green-700">
+              Dashboard
             </Link>
-            <Link href="#" className="text-sm font-medium text-green-900 hover:text-green-700">
-              Services
+            <Link to="/online-mandi" className="text-sm font-medium text-green-900 hover:text-green-700">
+              Online Mandi
             </Link>
-            <Link href="#" className="text-sm font-medium text-green-900 hover:text-green-700">
+            <Link to="/crop-recommedations" className="text-sm font-medium text-green-900 hover:text-green-700">
+              Crop Recommendation
+            </Link>
+            <Link to="/about-us" className="text-sm font-medium text-green-900 hover:text-green-700">
               About Us
-            </Link>
-            <Link href="#" className="text-sm font-medium text-green-900 hover:text-green-700">
-              Contact
             </Link>
           </nav>
 
