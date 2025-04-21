@@ -1,112 +1,67 @@
 import * as React from "react"
-import * as RechartsPrimitive from "recharts"
-import { cn } from "../../lib/utils"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./tooltip"
+import { Legend, ResponsiveContainer } from "recharts"
 
-// Format: { THEME_NAME: CSS_SELECTOR }
-const THEMES = {
-  light: "",
-  dark: ".dark"
+const ChartTooltipContent = ({ className, items, label }) => {
+  return (
+    <TooltipContent className={className}>
+      {label && <div className="font-medium">{label}</div>}
+      <ul className="grid gap-1">
+        {items.map((item) => (
+          <li key={item.name} className="grid grid-cols-[100px_auto] items-center text-sm">
+            <span className="text-muted-foreground">{item.name}</span>
+            <span>{item.value ? item.value(0) : ""}</span>
+          </li>
+        ))}
+      </ul>
+    </TooltipContent>
+  )
 }
 
-const ChartContext = React.createContext(null)
-
-function useChart() {
-  const context = React.useContext(ChartContext)
-  if (!context) {
-    throw new Error("useChart must be used within a <ChartContainer />")
-  }
-  return context
+const ChartTooltip = ({ content }) => {
+  return (
+    <TooltipProvider>
+      <Tooltip delayDuration={0}>
+        <TooltipTrigger asChild>{content}</TooltipTrigger>
+      </Tooltip>
+    </TooltipProvider>
+  )
 }
 
-export const Chart = ({ children }) => {
+const ChartContainer = ({ children, className, data }) => {
+  return (
+    <ResponsiveContainer width="100%" height="100%" className={className}>
+      {children}
+    </ResponsiveContainer>
+  )
+}
+
+const Chart = ({ children }) => {
   return <>{children}</>
 }
 
-export const ChartContainer = ({
-  id,
-  className,
-  children,
-  config,
-  ...props
-}) => {
-  const uniqueId = React.useId()
-  const chartId = `chart-${id || uniqueId.replace(/:/g, "")}`
-
+const ChartLegendItem = ({ name, color }) => {
   return (
-    <ChartContext.Provider value={{ config }}>
-      <div
-        data-slot="chart"
-        data-chart={chartId}
-        className={cn(
-          "[&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/50 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&_.recharts-radial-bar-background-sector]:fill-muted [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&_.recharts-reference-line_[stroke='#ccc']]:stroke-border flex aspect-video justify-center text-xs [&_.recharts-dot[stroke='#fff']]:stroke-transparent [&_.recharts-layer]:outline-hidden [&_.recharts-sector]:outline-hidden [&_.recharts-sector[stroke='#fff']]:stroke-transparent [&_.recharts-surface]:outline-hidden",
-          className
-        )}
-        {...props}>
-        <ChartStyle id={chartId} config={config} />
-        <RechartsPrimitive.ResponsiveContainer>
-          {children}
-        </RechartsPrimitive.ResponsiveContainer>
-      </div>
-    </ChartContext.Provider>
-  )
-}
-
-export const ChartTooltip = RechartsPrimitive.Tooltip
-
-export const ChartTooltipContent = ({
-  className,
-  items
-}) => {
-  return (
-    <div className={cn("bg-white p-2 rounded shadow", className)}>
-      {items.map((item, index) => (
-        <div key={index} className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }} />
-          <span className="text-sm">{item.name}: {item.value}</span>
-        </div>
-      ))}
+    <div className="flex items-center gap-1 text-sm">
+      <span className="inline-block h-2 w-2 rounded-full" style={{ backgroundColor: color }} />
+      {name}
     </div>
   )
 }
 
-export const ChartLegend = RechartsPrimitive.Legend
-
-export const ChartLegendItem = ({ name, color }) => {
+const ChartLegend = ({ children, className, ...props }) => {
   return (
-    <div className="flex items-center gap-2">
-      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: color }} />
-      <span className="text-sm">{name}</span>
-    </div>
+    <Legend
+      {...props}
+      wrapperStyle={{
+        paddingTop: 20,
+        paddingBottom: 20,
+      }}
+      className={className}
+    >
+      {children}
+    </Legend>
   )
 }
 
-const ChartStyle = ({
-  id,
-  config
-}) => {
-  const colorConfig = Object.entries(config).filter(([, config]) => config.theme || config.color)
-
-  if (!colorConfig.length) {
-    return null
-  }
-
-  return (
-    <style
-      dangerouslySetInnerHTML={{
-        __html: Object.entries(THEMES)
-          .map(([theme, prefix]) => `
-${prefix} [data-chart=${id}] {
-${colorConfig
-.map(([key, itemConfig]) => {
-const color =
-  itemConfig.theme?.[theme] ||
-  itemConfig.color
-return color ? `  --color-${key}: ${color};` : null
-})
-.join("\n")}
-}
-`)
-          .join("\n"),
-      }} />
-  )
-}
+export { Chart, ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendItem }
