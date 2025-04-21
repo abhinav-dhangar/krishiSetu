@@ -42,20 +42,20 @@ export default function Home() {
     {
       name: "Rajesh Kumar",
       location: "Punjab",
-      image: "/placeholder.svg?height=80&width=80",
+      image: "https://images.unsplash.com/photo-1631819539802-720166c2651f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHB1bmphYmklMjBwZXJzb258ZW58MHx8MHx8fDI%3D",
       quote: "KrishiSetu helped me increase my crop yield by 30% through their soil testing and crop recommendations.",
     },
     {
       name: "Anita Devi",
       location: "Uttar Pradesh",
-      image: "/placeholder.svg?height=80&width=80",
+      image: "https://images.unsplash.com/photo-1631819539802-720166c2651f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHB1bmphYmklMjBwZXJzb258ZW58MHx8MHx8fDI%3D",
       quote:
         "The weather alerts saved my harvest during unexpected rains. This app is a blessing for small farmers like me.",
     },
     {
       name: "Suresh Patel",
       location: "Gujarat",
-      image: "/placeholder.svg?height=80&width=80",
+      image: "https://images.unsplash.com/photo-1642151054985-609d594ba1f7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Z3VqcmF0aXxlbnwwfHwwfHx8Mg%3D%3D",
       quote:
         "I sold my crop residue through KrishiSetu instead of burning it. Better for the environment and I made extra income!",
     },
