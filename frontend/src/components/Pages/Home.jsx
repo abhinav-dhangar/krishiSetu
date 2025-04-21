@@ -48,7 +48,7 @@ export default function Home() {
     {
       name: "Anita Devi",
       location: "Uttar Pradesh",
-      image: "https://images.unsplash.com/photo-1631819539802-720166c2651f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHB1bmphYmklMjBwZXJzb258ZW58MHx8MHx8fDI%3D",
+      image: "https://images.unsplash.com/photo-1602793778401-d5ddab8febd5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTJ8fGluZGlhbiUyMGZlbWFsZXxlbnwwfHwwfHx8Mg%3D%3D",
       quote:
         "The weather alerts saved my harvest during unexpected rains. This app is a blessing for small farmers like me.",
     },
@@ -690,7 +690,7 @@ export default function Home() {
                 <div className="flex flex-col md:flex-row gap-6 items-center">
                   <div className="flex-shrink-0">
                     <img
-                      src={testimonials[currentTestimonial].image || "https://images.unsplash.com/photo-1516213504308-b3f27ab82bbf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGZhcm1lciUyMGh1bWFufGVufDB8fDB8fHwy"}
+                      src={testimonials[currentTestimonial].image}
                       alt={testimonials[currentTestimonial].name}
                       className="w-20 h-20 rounded-full border-4 border-green-100"
                     />
