@@ -178,9 +178,11 @@ export default function Home() {
           </nav>
 
           <div className="flex items-center gap-4">
-            <Link to="/login" variant="outline" className="hidden md:flex border-green-600 text-green-700 hover:bg-green-50">
-              Login
-            </Link>
+            <Button variant="outline" className="hidden md:flex border-green-600 text-green-700 hover:bg-green-50">
+              <Link to="/login">
+                Login
+              </Link>
+            </Button>
             <Button className="hidden md:flex bg-green-700 hover:bg-green-800"> <Link to="/register">Sign Up</Link></Button>
             <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
