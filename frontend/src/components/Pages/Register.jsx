@@ -53,7 +53,7 @@ const Register = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('/images/register-bg.jpg')",
+            backgroundImage: "url('https://images.unsplash.com/photo-1701665836468-4346c4d0d574?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGZhcm0lMjBmZWlsZHxlbnwwfHwwfHx8Mg%3D%3D')",
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-green-900/90 to-green-800/75"></div>
