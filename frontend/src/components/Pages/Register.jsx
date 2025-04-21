@@ -51,9 +51,9 @@ const Register = () => {
       {/* Left side - Image */}
       <div className="hidden lg:block lg:w-1/2 relative">
         <div 
-          className="absolute inet-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Zm9vZCUyMG1hcmtldHxlbnwwfHwwfHx8MA%3D%3D')",
+            backgroundImage: "url('/images/register-bg.jpg')",
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-green-900/90 to-green-800/75"></div>
