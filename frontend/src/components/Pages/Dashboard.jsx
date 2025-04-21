@@ -1,7 +1,5 @@
-"use client"
-
+import React from 'react'
 import { useState } from "react"
-import { Link } from 'react-router-dom';
 import { motion } from "framer-motion"
 import {
   Calendar,
@@ -22,7 +20,7 @@ import {
   Wind,
   X,
 } from "lucide-react"
-
+import { Link } from 'react-router-dom'
 import { Button } from "../ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card"
 import { Progress } from "../ui/progress"
@@ -46,7 +44,6 @@ import {
   ChartLegendItem,
 } from "../ui/chart"
 import { Line, Pie } from "recharts"
-
 export default function Dashboard() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -122,7 +119,7 @@ export default function Dashboard() {
       season: "Rabi",
       waterRequirement: "Medium",
       expectedYield: "4.5-5.2 tonnes/hectare",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "https://plus.unsplash.com/premium_photo-1670909649532-d1d68ee475cd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8d2hlYXR8ZW58MHx8MHx8fDA%3D",
     },
     {
       name: "Rice",
@@ -130,7 +127,7 @@ export default function Dashboard() {
       season: "Kharif",
       waterRequirement: "High",
       expectedYield: "5.0-6.0 tonnes/hectare",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "https://images.unsplash.com/photo-1516684732162-798a0062be99?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cmljZXxlbnwwfHwwfHx8MA%3D%3D",
     },
     {
       name: "Maize",
@@ -138,7 +135,7 @@ export default function Dashboard() {
       season: "Kharif",
       waterRequirement: "Medium",
       expectedYield: "3.5-4.2 tonnes/hectare",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "https://images.unsplash.com/photo-1651667343153-6dc318e27e41?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFpemV8ZW58MHx8MHx8fDA%3D",
     },
     {
       name: "Mustard",
@@ -146,7 +143,7 @@ export default function Dashboard() {
       season: "Rabi",
       waterRequirement: "Low",
       expectedYield: "1.2-1.5 tonnes/hectare",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "https://images.unsplash.com/photo-1651667343153-6dc318e27e41?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFpemV8ZW58MHx8MHx8fDA%3D",
     },
   ]
 
@@ -209,9 +206,10 @@ export default function Dashboard() {
   }
 
   return (
+    <>
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-amber-50">
       {/* Navigation Bar */}
-      <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-sm">
+      <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-sm px-8">
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-2">
             <Seedling className="h-6 w-6 text-green-600" />
@@ -219,30 +217,30 @@ export default function Dashboard() {
           </div>
 
           <nav className="hidden md:flex items-center gap-6">
-            <Link href="/" className="text-sm font-medium text-green-900 hover:text-green-700">
+            <Link to="/" className="text-sm font-medium text-green-900 hover:text-green-700">
               <Home className="h-4 w-4 inline mr-1" />
               Home
             </Link>
             <Link
-              href="/dashboard"
+              to="/dashboard"
               className="text-sm font-medium text-green-700 border-b-2 border-green-700 hover:text-green-700"
             >
               <PieChart className="h-4 w-4 inline mr-1" />
               Dashboard
             </Link>
-            <Link href="/online-mandi" className="text-sm font-medium text-green-900 hover:text-green-700">
+            <Link to="/online-mandi" className="text-sm font-medium text-green-900 hover:text-green-700">
               <ShoppingCart className="h-4 w-4 inline mr-1" />
               Online Mandi
             </Link>
-            <Link href="/soil-testing" className="text-sm font-medium text-green-900 hover:text-green-700">
+            <Link to="/soil-testing" className="text-sm font-medium text-green-900 hover:text-green-700">
               <Droplets className="h-4 w-4 inline mr-1" />
               Soil Testing
             </Link>
-            <Link href="/irrigation-calendar" className="text-sm font-medium text-green-900 hover:text-green-700">
+            <Link to="/irrigation-calendar" className="text-sm font-medium text-green-900 hover:text-green-700">
               <Calendar className="h-4 w-4 inline mr-1" />
               Irrigation Calendar
             </Link>
-            <Link href="/about-us" className="text-sm font-medium text-green-900 hover:text-green-700">
+            <Link to="/about-us" className="text-sm font-medium text-green-900 hover:text-green-700">
               <Info className="h-4 w-4 inline mr-1" />
               About Us
             </Link>
@@ -278,8 +276,6 @@ export default function Dashboard() {
             </Button>
           </div>
         </div>
-
-        {/* Mobile menu */}
         {isMenuOpen && (
           <div className="md:hidden border-t p-4 bg-white">
             <nav className="flex flex-col space-y-4">
@@ -312,22 +308,21 @@ export default function Dashboard() {
         )}
       </header>
 
-      <main className="container py-6">
-        {/* Dashboard Header */}
+      <main className="container p-6">
+      {/* Dashboard Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
-          <div>
-            <h1 className="text-2xl md:text-3xl font-bold text-green-900">Farm Dashboard</h1>
-            <p className="text-green-700">Welcome back, {userData.name}! Here's your farm overview.</p>
-          </div>
-          <div className="mt-4 md:mt-0 flex items-center gap-2">
-            <MapPin className="h-5 w-5 text-green-700" />
-            <span className="text-green-800">{userData.location}</span>
-            <Badge variant="outline" className="ml-2 bg-green-100 text-green-800 hover:bg-green-200">
-              Last updated: Today, 10:30 AM
-            </Badge>
-          </div>
+            <div>
+              <h1 className="text-2xl md:text-3xl font-bold text-green-900">Farm Dashboard</h1>
+              <p className="text-green-700">Welcome back, {userData.name}! Here's your farm overview.</p>
+            </div>
+            <div className="mt-4 md:mt-0 flex items-center gap-2">
+              <MapPin className="h-5 w-5 text-green-700" />
+              <span className="text-green-800">{userData.location}</span>
+              <Badge variant="outline" className="ml-2 bg-green-100 text-green-800 hover:bg-green-200">
+                Last updated: Today, 10:30 AM
+              </Badge>
+            </div>
         </div>
-
         {/* Dashboard Content */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-6"
@@ -428,7 +423,7 @@ export default function Dashboard() {
                   </div>
                   <div>
                     <div className="aspect-video relative rounded-lg overflow-hidden border border-green-200">
-                      <Image src="/placeholder.svg?height=200&width=400" alt="Farm Map" fill className="object-cover" />
+                      <img src="https://imgs.search.brave.com/-CrokhLw_SDIihVLf3tVGrjlIyxBDFZwAw0p6k8Q0j0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9saDMu/Z29vZ2xldXNlcmNv/bnRlbnQuY29tLzk5/Vk1UWFlRM1RtUGMw/QmNReW1xdXVvY2s4/T0JWR3U0QVF1Yndr/UnJSclJ6OEtsVmxR/X0Q5Yk1GSUFCUmtt/bmFDRGVxMFBaUzAz/VjJCeHdsbTVvaTJk/c2JwOThLdjdTRngx/Z3hmZz1lMzY1LXBh/LW51LXMw" alt="Farm Map" fill className="object-cover" />
                       <div className="absolute bottom-2 right-2 bg-white/80 backdrop-blur-sm rounded px-2 py-1 text-xs text-green-900">
                         Tap to view detailed map
                       </div>
@@ -436,6 +431,152 @@ export default function Dashboard() {
                   </div>
                 </div>
               </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Soil Information */}
+          <motion.div variants={item} className="md:col-span-2">
+            <Card className="h-full border-green-100">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-green-800 flex items-center justify-between">
+                  <span>Soil Information</span>
+                  <Droplets className="h-5 w-5 text-green-700" />
+                </CardTitle>
+                <CardDescription>Based on your last soil test on {userData.lastSoilTest}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+                  <div className="space-y-2">
+                    <div className="flex justify-between">
+                      <div className="text-sm text-green-700">pH Level</div>
+                      <div className="text-sm font-medium text-green-900">{soilData.ph}</div>
+                    </div>
+                    <Progress value={soilData.ph * 10} className="h-2" />
+                    <div className="flex justify-between text-xs text-green-600">
+                      <span>Acidic</span>
+                      <span>Neutral</span>
+                      <span>Alkaline</span>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex justify-between">
+                      <div className="text-sm text-green-700">Nitrogen (N)</div>
+                      <div className="text-sm font-medium text-green-900">{soilData.nitrogen}%</div>
+                    </div>
+                    <Progress value={soilData.nitrogen} className="h-2" />
+                    <div className="flex justify-between text-xs text-green-600">
+                      <span>Low</span>
+                      <span>Medium</span>
+                      <span>High</span>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex justify-between">
+                      <div className="text-sm text-green-700">Phosphorus (P)</div>
+                      <div className="text-sm font-medium text-green-900">{soilData.phosphorus}%</div>
+                    </div>
+                    <Progress value={soilData.phosphorus} className="h-2" />
+                    <div className="flex justify-between text-xs text-green-600">
+                      <span>Low</span>
+                      <span>Medium</span>
+                      <span>High</span>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex justify-between">
+                      <div className="text-sm text-green-700">Potassium (K)</div>
+                      <div className="text-sm font-medium text-green-900">{soilData.potassium}%</div>
+                    </div>
+                    <Progress value={soilData.potassium} className="h-2" />
+                    <div className="flex justify-between text-xs text-green-600">
+                      <span>Low</span>
+                      <span>Medium</span>
+                      <span>High</span>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex justify-between">
+                      <div className="text-sm text-green-700">Organic Matter</div>
+                      <div className="text-sm font-medium text-green-900">{soilData.organicMatter}%</div>
+                    </div>
+                    <Progress value={soilData.organicMatter * 20} className="h-2" />
+                    <div className="flex justify-between text-xs text-green-600">
+                      <span>Low</span>
+                      <span>Medium</span>
+                      <span>High</span>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex justify-between">
+                      <div className="text-sm text-green-700">Moisture</div>
+                      <div className="text-sm font-medium text-green-900">{soilData.moisture}%</div>
+                    </div>
+                    <Progress value={soilData.moisture} className="h-2" />
+                    <div className="flex justify-between text-xs text-green-600">
+                      <span>Dry</span>
+                      <span>Moist</span>
+                      <span>Wet</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-green-50 p-4 rounded-lg">
+                  <div className="text-sm font-medium text-green-800 mb-2">Soil Recommendations</div>
+                  <ul className="space-y-2">
+                    {soilData.recommendations.map((rec, index) => (
+                      <li key={index} className="flex items-start">
+                        <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mr-2 mt-0.5">
+                          <span className="text-green-600 text-xs">✓</span>
+                        </div>
+                        <span className="text-sm text-green-700">{rec}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </CardContent>
+              <CardFooter>
+                <Button variant="outline" className="w-full border-green-600 text-green-700 hover:bg-green-50">
+                  <Link to="/soil-testing">Schedule New Soil Test</Link>
+                </Button>
+              </CardFooter>
+            </Card>
+          </motion.div>
+
+          {/* Crop Recommendations */}
+          <motion.div variants={item} className="md:col-span-1">
+            <Card className="h-full border-green-100">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-green-800 flex items-center justify-between">
+                  <span>Crop Recommendations</span>
+                  <Leaf className="h-5 w-5 text-green-700" />
+                </CardTitle>
+                <CardDescription>Based on your soil and location</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {cropRecommendations.slice(0, 3).map((crop, index) => (
+                    <div key={index} className="flex items-center gap-3 p-2 rounded-lg hover:bg-green-50">
+                      <img
+                        src={crop.image || "/placeholder.svg"}
+                        alt={crop.name}
+                        width={50}
+                        height={50}
+                        className="rounded-md object-cover"
+                      />
+                      <div className="flex-1">
+                        <div className="flex justify-between">
+                          <div className="font-medium text-green-900">{crop.name}</div>
+                          <Badge className="bg-green-100 text-green-800">{crop.season}</Badge>
+                        </div>
+                        <div className="text-xs text-green-700 mt-1">Suitability: {crop.suitability}%</div>
+                        <Progress value={crop.suitability} className="h-1 mt-1" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+              <CardFooter>
+                <Button className="w-full bg-green-700 hover:bg-green-800">View All Recommendations</Button>
+              </CardFooter>
             </Card>
           </motion.div>
 
@@ -557,153 +698,7 @@ export default function Dashboard() {
               </CardContent>
             </Card>
           </motion.div>
-
-          {/* Soil Information */}
-          <motion.div variants={item} className="md:col-span-2">
-            <Card className="h-full border-green-100">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-green-800 flex items-center justify-between">
-                  <span>Soil Information</span>
-                  <Droplets className="h-5 w-5 text-green-700" />
-                </CardTitle>
-                <CardDescription>Based on your last soil test on {userData.lastSoilTest}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
-                  <div className="space-y-2">
-                    <div className="flex justify-between">
-                      <div className="text-sm text-green-700">pH Level</div>
-                      <div className="text-sm font-medium text-green-900">{soilData.ph}</div>
-                    </div>
-                    <Progress value={soilData.ph * 10} className="h-2" />
-                    <div className="flex justify-between text-xs text-green-600">
-                      <span>Acidic</span>
-                      <span>Neutral</span>
-                      <span>Alkaline</span>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex justify-between">
-                      <div className="text-sm text-green-700">Nitrogen (N)</div>
-                      <div className="text-sm font-medium text-green-900">{soilData.nitrogen}%</div>
-                    </div>
-                    <Progress value={soilData.nitrogen} className="h-2" />
-                    <div className="flex justify-between text-xs text-green-600">
-                      <span>Low</span>
-                      <span>Medium</span>
-                      <span>High</span>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex justify-between">
-                      <div className="text-sm text-green-700">Phosphorus (P)</div>
-                      <div className="text-sm font-medium text-green-900">{soilData.phosphorus}%</div>
-                    </div>
-                    <Progress value={soilData.phosphorus} className="h-2" />
-                    <div className="flex justify-between text-xs text-green-600">
-                      <span>Low</span>
-                      <span>Medium</span>
-                      <span>High</span>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex justify-between">
-                      <div className="text-sm text-green-700">Potassium (K)</div>
-                      <div className="text-sm font-medium text-green-900">{soilData.potassium}%</div>
-                    </div>
-                    <Progress value={soilData.potassium} className="h-2" />
-                    <div className="flex justify-between text-xs text-green-600">
-                      <span>Low</span>
-                      <span>Medium</span>
-                      <span>High</span>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex justify-between">
-                      <div className="text-sm text-green-700">Organic Matter</div>
-                      <div className="text-sm font-medium text-green-900">{soilData.organicMatter}%</div>
-                    </div>
-                    <Progress value={soilData.organicMatter * 20} className="h-2" />
-                    <div className="flex justify-between text-xs text-green-600">
-                      <span>Low</span>
-                      <span>Medium</span>
-                      <span>High</span>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex justify-between">
-                      <div className="text-sm text-green-700">Moisture</div>
-                      <div className="text-sm font-medium text-green-900">{soilData.moisture}%</div>
-                    </div>
-                    <Progress value={soilData.moisture} className="h-2" />
-                    <div className="flex justify-between text-xs text-green-600">
-                      <span>Dry</span>
-                      <span>Moist</span>
-                      <span>Wet</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-green-50 p-4 rounded-lg">
-                  <div className="text-sm font-medium text-green-800 mb-2">Soil Recommendations</div>
-                  <ul className="space-y-2">
-                    {soilData.recommendations.map((rec, index) => (
-                      <li key={index} className="flex items-start">
-                        <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mr-2 mt-0.5">
-                          <span className="text-green-600 text-xs">✓</span>
-                        </div>
-                        <span className="text-sm text-green-700">{rec}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Button variant="outline" className="w-full border-green-600 text-green-700 hover:bg-green-50">
-                  Schedule New Soil Test
-                </Button>
-              </CardFooter>
-            </Card>
-          </motion.div>
-
-          {/* Crop Recommendations */}
-          <motion.div variants={item} className="md:col-span-1">
-            <Card className="h-full border-green-100">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-green-800 flex items-center justify-between">
-                  <span>Crop Recommendations</span>
-                  <Leaf className="h-5 w-5 text-green-700" />
-                </CardTitle>
-                <CardDescription>Based on your soil and location</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {cropRecommendations.slice(0, 3).map((crop, index) => (
-                    <div key={index} className="flex items-center gap-3 p-2 rounded-lg hover:bg-green-50">
-                      <Image
-                        src={crop.image || "/placeholder.svg"}
-                        alt={crop.name}
-                        width={50}
-                        height={50}
-                        className="rounded-md object-cover"
-                      />
-                      <div className="flex-1">
-                        <div className="flex justify-between">
-                          <div className="font-medium text-green-900">{crop.name}</div>
-                          <Badge className="bg-green-100 text-green-800">{crop.season}</Badge>
-                        </div>
-                        <div className="text-xs text-green-700 mt-1">Suitability: {crop.suitability}%</div>
-                        <Progress value={crop.suitability} className="h-1 mt-1" />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Button className="w-full bg-green-700 hover:bg-green-800">View All Recommendations</Button>
-              </CardFooter>
-            </Card>
-          </motion.div>
-
+          
           {/* Upcoming Tasks */}
           <motion.div variants={item} className="md:col-span-1">
             <Card className="h-full border-green-100">
@@ -768,7 +763,7 @@ export default function Dashboard() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button className="w-full bg-green-700 hover:bg-green-800">Visit Online Mandi</Button>
+                <Button className="w-full bg-green-700 hover:bg-green-800"><Link to="/online-mandi">Visit Online Mandi</Link></Button>
               </CardFooter>
             </Card>
           </motion.div>
@@ -819,5 +814,6 @@ export default function Dashboard() {
         </motion.div>
       </main>
     </div>
-  )
+  </>
+)
 }
