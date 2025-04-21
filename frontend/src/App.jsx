@@ -7,6 +7,7 @@ import Dashboard from './components/Pages/Dashboard';
 import OnlineMandi from './components/Pages/OnlineMandi';
 import SoilTesting from './components/Pages/SoilTesting';
 import IrrigationCalendar from './components/Pages/IrrigationCalendar';
+import AboutUs from './components/Pages/AboutUs';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/online-mandi" element={<OnlineMandi />} />
         <Route path="/soil-testing" element={<SoilTesting />} />
         <Route path="/irrigation-calendar" element={<IrrigationCalendar />} />
+        <Route path="/about-us" element={<AboutUs />} /> {/* Redirect to Home for any unknown routes */}
         {/* Add more routes as needed */}
       </Routes>
     </Router>
