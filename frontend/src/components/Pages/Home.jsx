@@ -447,7 +447,7 @@ export default function Home() {
                             Customized fertilizer recommendations
                           </li>
                         </ul>
-                        <Button className="w-fit bg-green-700 hover:bg-green-800">Request Test Now</Button>
+                        <Button className="w-fit bg-green-700 hover:bg-green-800"><Link to="/soil-testing">Request Test Now</Link></Button>
                       </div>
                       <div className="bg-green-50 flex items-center justify-center p-6">
                         <img
