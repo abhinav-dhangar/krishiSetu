@@ -33,7 +33,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 export default function Home() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+ 
   const [currentBlogPost, setCurrentBlogPost] = useState("")
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
   const [language, setLanguage] = useState("English")
@@ -152,73 +152,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-amber-50">
       {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-sm">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Seedling className="h-6 w-6 text-green-600" />
-            <span className="text-xl font-bold text-green-800">KrishiSetu</span>
-          </div>
-
-          <nav className="hidden md:flex items-center gap-6">
-            <Link to="/" className="text-sm font-medium text-green-900 hover:text-green-700">
-              Home
-            </Link>
-            <Link to="/dashboard" className="text-sm font-medium text-green-900 hover:text-green-700">
-              Dashboard
-            </Link>
-            <Link to="/online-mandi" className="text-sm font-medium text-green-900 hover:text-green-700">
-              Online Mandi
-            </Link>
-            <Link to="/crop-recommedations" className="text-sm font-medium text-green-900 hover:text-green-700">
-              Crop Recommendation
-            </Link>
-            <Link to="/about-us" className="text-sm font-medium text-green-900 hover:text-green-700">
-              About Us
-            </Link>
-          </nav>
-
-          <div className="flex items-center gap-4">
-            <Button variant="outline" className="hidden md:flex border-green-600 text-green-700 hover:bg-green-50">
-              <Link to="/login">
-                Login
-              </Link>
-            </Button>
-            <Button className="hidden md:flex bg-green-700 hover:bg-green-800"> <Link to="/register">Sign Up</Link></Button>
-            <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </Button>
-          </div>
-        </div>
-
-        {/* Mobile menu */}
-        {isMenuOpen && (
-          <div className="md:hidden border-t p-4 bg-white">
-            <nav className="flex flex-col space-y-4 px-4">
-              <Link href="#" className="text-sm font-medium text-green-900 hover:text-green-700">
-                Home
-              </Link>
-              <Link href="#" className="text-sm font-medium text-green-900 hover:text-green-700">
-                Solutions
-              </Link>
-              <Link href="#" className="text-sm font-medium text-green-900 hover:text-green-700">
-                Services
-              </Link>
-              <Link href="#" className="text-sm font-medium text-green-900 hover:text-green-700">
-                About Us
-              </Link>
-              <Link href="#" className="text-sm font-medium text-green-900 hover:text-green-700">
-                Contact
-              </Link>
-              <div className="flex flex-col space-y-2 pt-2">
-                <Button variant="outline" className="w-full border-green-600 text-green-700 hover:bg-green-50">
-                  Login
-                </Button>
-                <Button className="w-full bg-green-700 hover:bg-green-800">Sign Up</Button>
-              </div>
-            </nav>
-          </div>
-        )}
-      </header>
 
       <main>
         {/* Hero Section */}
